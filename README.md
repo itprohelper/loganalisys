@@ -53,7 +53,8 @@ On your terminal type: `python logAnalysis.py`
 
 ## Views created in the database
 
-####errorsperday:####
+**errorsperday:**
+
 *create view errorsPerday as select date(time), count(status) as num from log where status like '404%' group by status, time order by time desc;*
 
 
