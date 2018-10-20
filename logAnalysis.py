@@ -1,10 +1,17 @@
+#!/usr/bin/env python
 import psycopg2
 
 conn = psycopg2.connect("dbname=news")
 
 cursor = conn.cursor()
 
-cursor.execute ("select title, count(*) as views from articles join log on log.path like concat('%',articles.slug) group by articles.title order by views desc limit 3")
+cursor.execute ("""
+SELECT title, count(*) AS views 
+FROM articles JOIN log 
+ON log.path = '/article/' || articles.slug 
+GROUP BY articles.title 
+ORDER BY views DESC LIMIT 3;
+""")
 
 results = cursor.fetchall()
 
@@ -12,11 +19,21 @@ results = cursor.fetchall()
 
 print
 print "Most popular three articles of all time"
-for results in results:
-  print " ", results[0], results[1],("-- views")
+#for results in results:
+#  print " ", results[0], results[1],("-- views")
+for title, views in results:
+    print('"{}" - {} views'.format(title, views))
+
 
 print
-cursor.execute ("select name, count(*) as views from authors, articles join log on log.path like concat('%',articles.slug) where authors.id = articles.author group by authors.name order by views desc limit 3")
+cursor.execute ("""
+SELECT name, count(*) AS views 
+FROM authors, articles JOIN log 
+ON log.path = '/article/' || articles.slug
+WHERE authors.id = articles.author 
+GROUP BY authors.name 
+ORDER BY views DESC LIMIT 3;
+""")
 
 results = cursor.fetchall()
 
@@ -27,7 +44,13 @@ for results in results:
   print " ", results[0], results[1],("-- views")
 
 print
-cursor.execute ("select date, avg(num) from errorsperday where num > 1.0 group by date order by date desc")
+cursor.execute ("""
+SELECT date, avg(num) 
+FROM errorsperday 
+WHERE num > 1.0 
+GROUP BY date 
+ORDER BY date DESC;
+""")
 
 results = cursor.fetchall()
 
