@@ -24,7 +24,7 @@ https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsd
 
 Unzip the newsdata.zip. This will give you a `newsdata.sql` which you can then import to your empty database by running the below command:
 
-    `psql -d news -f newsdata.sql`
+   ` psql -d news -f newsdata.sql`
 
 This fictional PostgreSQL database is for a news website.
 
@@ -48,11 +48,14 @@ The database includes three tables:
     The log table includes one entry for each time a user has accessed the site.
 
 
-On your terminal type: python logAnalysis.py
+On your terminal type: `python logAnalysis.py`
 
 
 ## Views created in the database
+```
+**errorsperday**
+*create view errorsPerday as select date(time), count(status) as num from log where status like '404%' group by status, time order by time desc;*
 
-errorsperday
+```
 
 
