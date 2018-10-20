@@ -48,7 +48,7 @@ The database includes three tables:
     The log table includes one entry for each time a user has accessed the site.
 
 
-On your terminal type: `python logAnalysis.py`
+On your terminal type: `python logAnalysis.py` to run this script.
 
 
 ## Views created in the database
