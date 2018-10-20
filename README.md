@@ -10,21 +10,21 @@ This reporting tool that prints out reports (in plain text) based on the data in
 ## Requiments
 This project uses the following:
 
-Python version 2.7
-PostgreSQL
-psycopg2 Python module
+1. Python version 2.7
+2. PostgreSQL
+3. psycopg2 Python module
 
 You will need to manually create a database in PostgreSQL using this following command:
 
-create database news;
+   ` create database news;`
 
-Once you have created the empty database go to the following link and download newsdata.sql from the following URL:
+Once you have created the empty database go to the following link and download `newsdata.sql` from the following URL:
 
 https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
 
-Unzip the newsdata.zip. This will give you a 'newsdata.sql' which you can then import to your empty database by running the below command:
+Unzip the newsdata.zip. This will give you a `newsdata.sql` which you can then import to your empty database by running the below command:
 
-psql -d news -f newsdata.sql
+    `psql -d news -f newsdata.sql`
 
 This fictional PostgreSQL database is for a news website.
 
@@ -32,7 +32,7 @@ This fictional PostgreSQL database is for a news website.
 ## Usage
 Once you have the data loaded into your database. Connect to your database using:
 
- psql -d news 
+    psql -d news 
 
 Explore the tables using the \dt and \d table commands and select statements.
 
